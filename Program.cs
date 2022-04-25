@@ -1,43 +1,50 @@
-﻿// Butun kodlari parcalayarak buglara daha hizli cozum bulmak ve kod tekrarlarini onlemek icin kullaniriz.
+﻿Console.WriteLine("*********Alt Parametreler ****************");
 
+string  sayi = "999";
+int outSayi;
+bool sonuc = int.TryParse(sayi, outSayi);
 
-
-int a = 2 ; 
-int b = 3 ; 
-Console.WriteLine(a+b);
-int sonuc = Topla(a,b);
-
-Metotlar ornek = new Metotlar();
-ornek.EkranaYazdir(Convert.ToString(sonuc));
-ornek.EkranaYazdir(Convert.ToString(ref a, ref b));
-
-
-static int Topla(int deger1, int deger2) //CoolbyValue
+if (sonuc)
 {
-    return deger1 + deger2;
+    Console.WriteLine("Basarili");
+    Console.WriteLine(outSayi);
+}
+else
+{
+    Console.WriteLine("Basarisiz");
+}
+Metotlar instance = new Metotlar();
+instance.Topla(4,5, out int toplamSonuc);
+Console.WriteLine(toplamSonuc);
+
+int ifade = 999;
+instance.EkranaYazdir(Convert.Tostring(ifade));
+instance.EkranaYazdir(ifade);
+
+
+class Metotlar 
+{
+    public int Topla(int a, int b, out int toplam)
+    {
+        toplam = a+b;
+    }
 }
 
-class Metotlar
+//Birden fazla ayni metodu tanimlamamiza izin verir.  Bu şekilde birden fazla aynı metodun yazılmasına overloading, aşırı yükleme adı verilir.
+class overloading
 {
     public void EkranaYazdir(string veri)
     {
-        Console.WriteLine(veri);
-    }
 
-    public int ArttirveTopla(int deger1 , int deger2 )
+    } 
+    public void EkranaYazdir(int veri)
     {
-        deger1 +=1;
-        deger2 +=1;  
-        return deger1 + deger2;
-
-    }
-
+        
+    } 
+    public void EkranaYazdir(string veri1, string veri2)
+    {
+        Console.WriteLine(veri1 + veri2);
+    } 
 }
-
-
-
-
-
-
 
 
